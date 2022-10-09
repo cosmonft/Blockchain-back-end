@@ -1,7 +1,4 @@
 import { Model, Sequelize } from "sequelize";
-import { commentMessagesModel } from "./commentMessages";
-import { followMessagesModel } from "./followMessages";
-import { userModel } from "./users";
 import { getEnvVars } from "../utils/misc";
 
 export async function getDbConnector() {

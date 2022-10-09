@@ -1,17 +1,17 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 
-export const followMessagesModel = (initializedSequel: Sequelize) => {
-    return initializedSequel.define('follow_messages', {
+export const followMessagesModel = {
         message_id: {
-            type: DataTypes.NUMBER,
-            allowNull: false
+            type: DataTypes.UUID,
+            allowNull: false,
+            primaryKey: true
         },
         sent: {
             type: DataTypes.BOOLEAN,
             allowNull: true
         },
         profile_id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         FollowNFT: {
@@ -19,8 +19,7 @@ export const followMessagesModel = (initializedSequel: Sequelize) => {
             allowNull: true
         },
         Timestamp: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: true
         }
-    });
-}
+    };

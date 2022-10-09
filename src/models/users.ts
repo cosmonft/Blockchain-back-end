@@ -1,14 +1,13 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 
-export const userModel = (initializedSequel: Sequelize) => {
-    return initializedSequel.define('User', {
-        ID: {
+export const userModel = {
+        id: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            primaryKey: false 
         },
-        Address: {
+        address: {
             type: DataTypes.STRING,
             allowNull: false
         }
-    });
-}
+    };

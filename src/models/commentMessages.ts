@@ -1,21 +1,21 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 
-export const commentMessagesModel = (initializedSequel: Sequelize) => {
-    return initializedSequel.define('comment_messages', {
+export const commentMessagesModel = {
         messasge_id: {
-            type: DataTypes.NUMBER,
-            allowNull: false
+            type: DataTypes.UUID,
+            allowNull: false,
+            primaryKey: true
         },
         sent: {
             type: DataTypes.BOOLEAN,
             allowNull: true
         }, 
         profile_id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         pub_id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         content_uri: {
@@ -23,11 +23,11 @@ export const commentMessagesModel = (initializedSequel: Sequelize) => {
             allowNull: true
         },
         profile_id_pointed: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         pub_id_pointed: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         collect_module: {
@@ -47,8 +47,7 @@ export const commentMessagesModel = (initializedSequel: Sequelize) => {
             allowNull: true
         },
         timestamp: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.STRING,
             allowNull: true
         }
-    });
-}
+    };

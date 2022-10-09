@@ -10,7 +10,7 @@ export const updateSent = async (
             await sequelizer.query(`
                 UPDATE ${tableName}
                 SET sent = true
-                WHERE message_id = ${messageId}
+                WHERE message_id = '${messageId}'
             `)
         } catch (err) {
             console.error(err);

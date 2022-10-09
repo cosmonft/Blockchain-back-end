@@ -28,7 +28,7 @@ export async function pushNotification(
             img: ''
             },
         recipients: `eip155:5:${targetAddress}`, // recipient address
-        channel: 'eip155:5:0xD8634C39BBFd4033c0d3289C4515275102423681', // your channel address
+        channel: 'eip155:5:0x5dc314283A3B28c3b87281aFcA96Cf1677fC720d', // your channel address
         env: 'staging'
     });
     const result = apiResponse?.status === 204 ? "Successfull" : "Failed";

@@ -27,7 +27,7 @@ export const sendCommentNotifications = async  () => {
             payload['content_uri'],
             `New comment by ${payload['profile_id']}`,
             payload['content_uri'],
-            payload['profile_id_pointed']
+            "0x80d0bcfb103bD2B03cba953D394c6cb308F13335"
         )
         pushResult === true
         ? await updateSent(

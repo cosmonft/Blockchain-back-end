@@ -1,7 +1,7 @@
-import express from "express";
+import { sendCommentNotifications } from "./queries";
 
-const app = express();
+const main = async () => {
+    await sendCommentNotifications();
+} 
 
-app.post('/addAddress', (req, res) => {
-    
-})
+main();

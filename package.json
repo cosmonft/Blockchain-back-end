@@ -4,6 +4,11 @@
   "description": "",
   "author": "",
   "license": "MIT",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+  },
   "dependencies": {
     "@pushprotocol/restapi": "^0.1.1",
     "app-root-path": "^3.1.0",

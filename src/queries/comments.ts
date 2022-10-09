@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import { pushNotification } from "../epns";
 import { getDbConnector } from "../models";
+import { updateSent } from "./share";
 
 const getFollows = async (sequelizer: Sequelize) => {
     try {
@@ -16,23 +17,6 @@ const getFollows = async (sequelizer: Sequelize) => {
     }
 };
 
-const updateSent = async (
-    sequelizer: Sequelize,
-    messageId: string
-    ) => {
-        try {
-            console.log('Updating `sent` column...\n');
-            await sequelizer.query(`
-                UPDATE sent
-                FROM comment_messages
-                WHERE sent = false  
-                    AND message_id = ${messageId}
-            `)
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
 export const sendCommentNotifications = async  () => {
     const connector = await getDbConnector() as Sequelize;
     const queryResults = await getFollows(connector) || [];
@@ -46,7 +30,10 @@ export const sendCommentNotifications = async  () => {
             payload['profile_id_pointed']
         )
         pushResult === true
-        ? await updateSent(connector, payload['message_id'])
+        ? await updateSent(
+            connector, 
+            payload['message_id'],
+            "comment_messages")
         : null;
     }
 };

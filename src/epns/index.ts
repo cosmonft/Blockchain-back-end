@@ -33,6 +33,11 @@ export async function pushNotification(
     });
     const result = apiResponse?.status === 204 ? "Successfull" : "Failed";
     console.log(`API response: ${result}`);
+    if (result === "Successfull") {
+        return true;
+    } else {
+        return false;
+    }
     } catch (err) {
         console.error(err);
     }

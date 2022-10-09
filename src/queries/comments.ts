@@ -16,17 +16,37 @@ const getFollows = async (sequelizer: Sequelize) => {
     }
 };
 
+const updateSent = async (
+    sequelizer: Sequelize,
+    messageId: string
+    ) => {
+        try {
+            console.log('Updating `sent` column...\n');
+            await sequelizer.query(`
+                UPDATE sent
+                FROM comment_messages
+                WHERE sent = false  
+                    AND message_id = ${messageId}
+            `)
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
 export const sendCommentNotifications = async  () => {
-    const connector = await getDbConnector();
-    const queryResults = await getFollows(connector as Sequelize) || [];
+    const connector = await getDbConnector() as Sequelize;
+    const queryResults = await getFollows(connector) || [];
     for (let i=0; i < queryResults.length; i++) {
         let payload: any = queryResults[i];
-        await pushNotification(
+        const pushResult = await pushNotification(
             "New comment!",
             payload['content_uri'],
             `New comment by ${payload['profile_id']}`,
             payload['content_uri'],
             payload['profile_id_pointed']
         )
+        pushResult === true
+        ? await updateSent(connector, payload['message_id'])
+        : null;
     }
 };
